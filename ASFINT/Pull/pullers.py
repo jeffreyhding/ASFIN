@@ -1,9 +1,12 @@
 import pandas as pd
 from pathlib import Path
 
-def pull_csv(filepath: str|Path, process_type: str):
+def pull_csv(filepath, process_type):
     """
-    Takes in a filepath and converts it into a csv.
+    Pull raw CSVs.
+    - If `filepath` is a file: read it directly.
+    - If `filepath` is a directory: scan for all CSV files inside.
+    Returns {filename: DataFrame} (or (df, text) for FR).
     """
     process_type = process_type.strip().upper()
     if process_type == 'FR':
